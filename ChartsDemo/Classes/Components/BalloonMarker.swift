@@ -22,6 +22,10 @@ open class BalloonMarker: MarkerImage
     open var insets = UIEdgeInsets()
     open var minimumSize = CGSize()
     
+    //TODO:添加
+    public var barDescription = NSMutableArray()
+    public var lineDateDescription = NSMutableArray()
+    
     fileprivate var labelns: NSString?
     fileprivate var _labelSize: CGSize = CGSize()
     fileprivate var _paragraphStyle: NSMutableParagraphStyle?
@@ -60,11 +64,20 @@ open class BalloonMarker: MarkerImage
         
         var rect = CGRect(
             origin: CGPoint(
-                x: point.x,// + offset.x,
+                x: point.x,
                 y: point.y + offset.y),
             size: size)
         rect.origin.x -= size.width / 2.0
         rect.origin.y -= size.height
+        
+        //TODO:
+        let maxXpiex = rect.origin.x + rect.size.width
+        let APP_Width = UIScreen.main.bounds.size.width
+        var newXpiex = rect.origin.x
+        
+        if maxXpiex > APP_Width {
+            newXpiex = APP_Width - rect.size.width;
+        }
         
         context.saveGState()
         
@@ -72,34 +85,48 @@ open class BalloonMarker: MarkerImage
         {
             context.setFillColor(color.cgColor)
             context.beginPath()
+            //left up
             context.move(to: CGPoint(
-                x: rect.origin.x,
+                x: newXpiex,
                 y: rect.origin.y))
+            //right up
             context.addLine(to: CGPoint(
-                x: rect.origin.x + rect.size.width,
+                x: newXpiex + rect.size.width,
                 y: rect.origin.y))
+            //right down
             context.addLine(to: CGPoint(
-                x: rect.origin.x + rect.size.width,
+                x: newXpiex + rect.size.width,
                 y: rect.origin.y + rect.size.height - arrowSize.height))
+            //center point right
             context.addLine(to: CGPoint(
                 x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
                 y: rect.origin.y + rect.size.height - arrowSize.height))
+            //center point
             context.addLine(to: CGPoint(
                 x: rect.origin.x + rect.size.width / 2.0,
                 y: rect.origin.y + rect.size.height))
+            //center point left
             context.addLine(to: CGPoint(
                 x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
                 y: rect.origin.y + rect.size.height - arrowSize.height))
+            //left down
             context.addLine(to: CGPoint(
-                x: rect.origin.x,
+                x: newXpiex,
                 y: rect.origin.y + rect.size.height - arrowSize.height))
+            //left up
             context.addLine(to: CGPoint(
-                x: rect.origin.x,
+                x: newXpiex,
                 y: rect.origin.y))
             context.fillPath()
         }
         
+        //TODO:新增
+        if maxXpiex > APP_Width {
+            rect.origin.x = newXpiex
+        }
+        
         rect.origin.y += self.insets.top
+        
         rect.size.height -= self.insets.top + self.insets.bottom
         
         UIGraphicsPushContext(context)
@@ -130,6 +157,10 @@ open class BalloonMarker: MarkerImage
         var size = CGSize()
         size.width = _labelSize.width + self.insets.left + self.insets.right
         size.height = _labelSize.height + self.insets.top + self.insets.bottom
+        //TODO:
+        if(self.lineDateDescription.count > 0){
+            size.height += 6
+        }
         size.width = max(minimumSize.width, size.width)
         size.height = max(minimumSize.height, size.height)
         self.size = size

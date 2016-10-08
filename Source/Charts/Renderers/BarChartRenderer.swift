@@ -618,6 +618,8 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 setHighlightDrawPos(highlight: high, barRect: barRect)
                 
                 context.fill(barRect)
+                //TODO:柱状图虚线(当点击柱状图，柱状图高亮时，显示虚线)
+                drawBrokenLine(context: context, dataProvider: dataProvider, set: set, barData: barData, index: high.dataIndex, y1: y1, y2: y2, x: CGFloat(e.x))
             }
         }
         

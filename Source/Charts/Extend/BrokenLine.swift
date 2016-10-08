@@ -28,11 +28,6 @@ extension BarChartRenderer
             context.setLineDash(phase: 0.0, lengths: [12.0, 10.0])
         }
         
-//        let yValue = set.yValForXIndex(index)
-//        if yValue.isNaN {
-//            continue
-//        }
-        
         if y1 >= -y2 {
             _highlightPointBuffer.x = CGFloat(x)
             _highlightPointBuffer.y = 0

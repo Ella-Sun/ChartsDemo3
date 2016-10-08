@@ -23,7 +23,33 @@ open class XYMarkerView: BalloonMarker
     
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {
-        setLabel("x: " + xAxisValueFormatter!.stringForValue(entry.x, axis: nil) + ", y: " + yFormatter.string(from: NSNumber(floatLiteral: entry.y))!)
+        //TODO:
+        let isGroup = highlight.dataSetIndex
+        let xIndex = highlight.axis.rawValue
+        let detailDes: [NSString]
+        var text: NSString = ""
+        var childAry: [NSString]
+        
+        if self.barDescription.count > 0 {
+            
+            childAry = self.barDescription[0] as! [NSString]
+            
+            if childAry.count > xIndex {
+                detailDes = self.barDescription[isGroup] as! [NSString]
+                text = detailDes[xIndex]
+            }
+        }
+        
+        if(self.lineDateDescription.count > 0){
+            text = lineDateDescription[xIndex] as! NSString
+            text =  (text as String).appending("\n") as NSString
+        }
+        
+        let defaultValue = "x: " + xAxisValueFormatter!.stringForValue(entry.x, axis: nil) + ", y: " + yFormatter.string(from: NSNumber(floatLiteral: entry.y))!
+        
+        let label = (text as String) + defaultValue
+        
+        setLabel(String(label))
     }
     
 }

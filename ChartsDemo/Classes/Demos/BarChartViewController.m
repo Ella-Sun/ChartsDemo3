@@ -59,13 +59,14 @@
     xAxis.drawGridLinesEnabled = NO;
     xAxis.granularity = 1.0; // only intervals of 1 day
     xAxis.labelCount = 7;
-    xAxis.valueFormatter = [[DayAxisValueFormatter alloc] initForChart:_chartView];
+    //TODO:可以添加后缀或者前缀
+//    xAxis.valueFormatter = [[DayAxisValueFormatter alloc] initForChart:_chartView];
     
     NSNumberFormatter *leftAxisFormatter = [[NSNumberFormatter alloc] init];
     leftAxisFormatter.minimumFractionDigits = 0;
     leftAxisFormatter.maximumFractionDigits = 1;
-    leftAxisFormatter.negativeSuffix = @" $";
-    leftAxisFormatter.positiveSuffix = @" $";
+//    leftAxisFormatter.negativeSuffix = @" $";
+//    leftAxisFormatter.positiveSuffix = @" $";
     
     ChartYAxis *leftAxis = _chartView.leftAxis;
     leftAxis.labelFont = [UIFont systemFontOfSize:10.f];
@@ -73,16 +74,11 @@
     leftAxis.valueFormatter = [[ChartDefaultAxisValueFormatter alloc] initWithFormatter:leftAxisFormatter];
     leftAxis.labelPosition = YAxisLabelPositionOutsideChart;
     leftAxis.spaceTop = 0.15;
-    leftAxis.axisMinimum = 0.0; // this replaces startAtZero = YES
+//    leftAxis.axisMinimum = 0.0; // this replaces startAtZero = YES
     
-    ChartYAxis *rightAxis = _chartView.rightAxis;
-    rightAxis.enabled = YES;
-    rightAxis.drawGridLinesEnabled = NO;
-    rightAxis.labelFont = [UIFont systemFontOfSize:10.f];
-    rightAxis.labelCount = 8;
-    rightAxis.valueFormatter = leftAxis.valueFormatter;
-    rightAxis.spaceTop = 0.15;
-    rightAxis.axisMinimum = 0.0; // this replaces startAtZero = YES
+//    ChartYAxis *rightAxis = _chartView.rightAxis;
+//    rightAxis.enabled = NO;
+//    rightAxis.drawGridLinesEnabled = NO;
     
     ChartLegend *l = _chartView.legend;
     l.horizontalAlignment = ChartLegendHorizontalAlignmentLeft;
@@ -137,8 +133,11 @@
     
     for (int i = start; i < start + count + 1; i++)
     {
-        double mult = (range + 1);
+        double mult = (range + 1)*1209;
         double val = (double) (arc4random_uniform(mult));
+        if (i%2) {
+            val = -val;
+        }
         [yVals addObject:[[BarChartDataEntry alloc] initWithX:(double)i + 1.0 y:val]];
     }
     

@@ -19,6 +19,8 @@ extension YAxisRenderer//ChartYAxisRenderer
         var newText: String = text
         newText = newText.replacingOccurrences(of: ",", with: "")
         newText = newText.replacingOccurrences(of: "-", with: "")
+        newText = newText.replacingOccurrences(of: " ", with: "")
+        newText = newText.replacingOccurrences(of: "$", with: "")
 
         let len = newText.characters.count;
         
