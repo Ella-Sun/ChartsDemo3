@@ -60,7 +60,7 @@ open class BalloonMarker: MarkerImage
         
         var rect = CGRect(
             origin: CGPoint(
-                x: point.x + offset.x,
+                x: point.x,// + offset.x,
                 y: point.y + offset.y),
             size: size)
         rect.origin.x -= size.width / 2.0
