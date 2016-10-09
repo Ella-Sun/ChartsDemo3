@@ -140,7 +140,35 @@ open class BalloonMarker: MarkerImage
     
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {
-        setLabel(String(entry.y))
+        //TODO:
+        let yFormatter: NumberFormatter = generateDefaultValueFormatter()
+        let newText = yFormatter.number(from: String(entry.y))//——>number
+        let numLabel = yFormatter.string(from: newText!)!//——>String
+        
+        let isGroup = highlight.dataSetIndex
+        let xIndex = highlight.axis.rawValue
+        let detailDes: [NSString]
+        var text: NSString = ""
+        var childAry: [NSString]
+        
+        if self.barDescription.count > 0 {
+        
+            childAry = self.barDescription[0] as! [NSString]
+            
+            if childAry.count > xIndex {
+                detailDes = self.barDescription[isGroup] as! [NSString]
+                text = detailDes[xIndex]
+            }
+        }
+        
+        if(self.lineDateDescription.count > 0){
+            text = lineDateDescription[xIndex] as! NSString
+            text =  (text as String).appending("\n") as NSString
+        }
+        
+        let label = (text as String) + numLabel
+        
+        setLabel(String(label))
     }
     
     open func setLabel(_ label: String)
@@ -164,5 +192,16 @@ open class BalloonMarker: MarkerImage
         size.width = max(minimumSize.width, size.width)
         size.height = max(minimumSize.height, size.height)
         self.size = size
+    }
+    
+    func generateDefaultValueFormatter() -> NumberFormatter
+    {
+        let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 1//整数显示最少位数不足前面补零
+        formatter.maximumFractionDigits = 2//小数显示最多位数超出四舍五入
+        formatter.minimumFractionDigits = 2//小数显示最少位数不足后面补零
+        formatter.usesGroupingSeparator = true//分组样式 默认为true 200,300.00
+        formatter.positiveFormat = "#,##0.00"
+        return formatter
     }
 }

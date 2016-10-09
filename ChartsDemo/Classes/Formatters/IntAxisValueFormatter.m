@@ -3,6 +3,9 @@
 //  ChartsDemo
 //  Copyright © 2016 dcg. All rights reserved.
 //
+/**
+ *  X轴整数显示
+ */
 
 #import "IntAxisValueFormatter.h"
 

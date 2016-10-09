@@ -73,7 +73,9 @@
     ChartXAxis *xAxis = _chartView.xAxis;
     xAxis.labelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:10.f];
     xAxis.granularity = 1.f;
+//    xAxis.drawGridLinesEnabled = YES;
     xAxis.centerAxisLabelsEnabled = YES;
+    xAxis.labelPosition = XAxisLabelPositionBottom;
     xAxis.valueFormatter = [[IntAxisValueFormatter alloc] init];
     
     NSNumberFormatter *leftAxisFormatter = [[NSNumberFormatter alloc] init];
@@ -121,9 +123,9 @@
     NSMutableArray *yVals2 = [[NSMutableArray alloc] init];
     NSMutableArray *yVals3 = [[NSMutableArray alloc] init];
     
-    double mult = range * 100000.f;
+    double mult = range * 10000.f;
     
-    int startYear = 1980;
+    int startYear = 1;
     int endYear = startYear + _sliderX.value;
 
     for (int i = startYear; i < endYear; i++)
@@ -196,7 +198,7 @@
 
 - (IBAction)slidersValueChanged:(id)sender
 {
-    int startYear = 1980;
+    int startYear = 1;
     int endYear = startYear + _sliderX.value;
 
     _sliderTextX.text = [NSString stringWithFormat:@"%d-%d", startYear, endYear];

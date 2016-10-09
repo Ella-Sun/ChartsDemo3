@@ -140,34 +140,14 @@ open class YAxisRenderer: AxisRendererBase
         
         let labelFont = yAxis.labelFont
         let labelTextColor = yAxis.labelTextColor
-        
-        //TODO: 判断Y轴是否以万元为单位
-        var millCount = 0
-        var nonMillCount = 0
-        for value in  yAxis.entries{
-            
-            let newValue = fabs(value)
-            if  newValue < 1000{
-                nonMillCount += 1
-            } else {
-                millCount += 1
-            }
-        }
-        let isMillion: Bool = (millCount > nonMillCount) ? true : false
-        
 
         for i in 0 ..< yAxis.entryCount
         {
-            var text = yAxis.getFormattedLabel(i)
+            let text = yAxis.getFormattedLabel(i)//String(yAxis.entries[i])//
             
             if !yAxis.isDrawTopYLabelEntryEnabled && i >= yAxis.entryCount - 1
             {
                 break
-            }
-            
-            //TODO: 获取新的Y值
-            if isMillion {
-                text = getBackNewTextFromYpiex(text: text)
             }
             
             ChartUtils.drawText(

@@ -71,7 +71,9 @@
     ChartYAxis *leftAxis = _chartView.leftAxis;
     leftAxis.labelFont = [UIFont systemFontOfSize:10.f];
     leftAxis.labelCount = 8;
-    leftAxis.valueFormatter = [[ChartDefaultAxisValueFormatter alloc] initWithFormatter:leftAxisFormatter];
+    leftAxis.valueFormatter = [[LargeValueFormatter alloc] init];
+//    leftAxis.valueFormatter = [[ChartDefaultAxisValueFormatter alloc] initWithFormatter:leftAxisFormatter];
+    leftAxis.drawAxisLineEnabled = NO;
     leftAxis.labelPosition = YAxisLabelPositionOutsideChart;
     leftAxis.spaceTop = 0.15;
 //    leftAxis.axisMinimum = 0.0; // this replaces startAtZero = YES
@@ -91,11 +93,11 @@
     l.xEntrySpace = 4.0;
     
     XYMarkerView *marker = [[XYMarkerView alloc]
-                                  initWithColor: [UIColor colorWithWhite:180/255. alpha:1.0]
-                                  font: [UIFont systemFontOfSize:12.0]
-                                  textColor: UIColor.whiteColor
-                                  insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)
-                                  xAxisValueFormatter: _chartView.xAxis.valueFormatter];
+                            initWithColor: [UIColor colorWithWhite:180/255. alpha:1.0]
+                                     font: [UIFont systemFontOfSize:12.0]
+                                textColor: UIColor.whiteColor
+                                   insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)
+                      xAxisValueFormatter: [[DayAxisValueFormatter alloc] initForChart:_chartView]];//前缀、后缀
     marker.chartView = _chartView;
     marker.minimumSize = CGSizeMake(80.f, 40.f);
     _chartView.marker = marker;
@@ -153,12 +155,15 @@
     {
         set1 = [[BarChartDataSet alloc] initWithValues:yVals label:@"The year 2017"];
         [set1 setColors:ChartColorTemplates.material];
+//        [set1 setColor:[UIColor greenColor]];
         
         NSMutableArray *dataSets = [[NSMutableArray alloc] init];
         [dataSets addObject:set1];
         
         BarChartData *data = [[BarChartData alloc] initWithDataSets:dataSets];
         [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:10.f]];
+        //TODO:
+        [data setValueFormatter:[[LargeValueFormatter alloc] init]];
         
         data.barWidth = 0.9f;
         
