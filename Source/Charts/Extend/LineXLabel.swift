@@ -8,7 +8,7 @@
 
 import Foundation
 
-private var _xLabelHidden = false
+fileprivate var _xLabelHidden = false
 
 extension XAxis//ChartXAxis
 {

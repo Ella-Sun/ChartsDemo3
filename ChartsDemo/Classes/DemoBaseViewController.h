@@ -30,5 +30,9 @@
 - (void)setupPieChartView:(PieChartView *)chartView;
 - (void)setupRadarChartView:(RadarChartView *)chartView;
 - (void)setupBarLineChartView:(BarLineChartViewBase *)chartView;
+/**
+ *  饼状图中间按钮被点击e
+ */
+- (void)centerPieBtnDidClicked;
 
 @end

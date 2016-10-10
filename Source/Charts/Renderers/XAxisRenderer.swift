@@ -250,14 +250,17 @@ open class XAxisRenderer: AxisRendererBase
                     }
                 }
                 
-                drawLabel(context: context,
-                          formattedLabel: label,
-                          x: position.x,
-                          y: pos,
-                          attributes: labelAttrs,
-                          constrainedToSize: labelMaxSize,
-                          anchor: anchor,
-                          angleRadians: labelRotationAngleRadians)
+                //TODO:当前界面是当日余额波动就不绘制X轴（X轴上至显示两个label）
+                if (!xAxis.xLabelHidden) {
+                    drawLabel(context: context,
+                              formattedLabel: label,
+                              x: position.x,
+                              y: pos,
+                              attributes: labelAttrs,
+                              constrainedToSize: labelMaxSize,
+                              anchor: anchor,
+                              angleRadians: labelRotationAngleRadians)
+                }
             }
         }
     }

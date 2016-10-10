@@ -50,45 +50,59 @@
     _chartView.delegate = self;
     
     _chartView.chartDescription.enabled = NO;
+    _chartView.noDataText = @"You need to provide data for the chart.";
     
     _chartView.dragEnabled = YES;
     [_chartView setScaleEnabled:YES];
-    _chartView.drawGridBackgroundEnabled = NO;
+//    _chartView.drawGridBackgroundEnabled = NO;
     _chartView.pinchZoomEnabled = YES;
     
-    _chartView.backgroundColor = [UIColor colorWithWhite:204/255.f alpha:1.f];
+    _chartView.backgroundColor = UIColor.whiteColor;
     
+    /**<  图例  >**/
     ChartLegend *l = _chartView.legend;
     l.form = ChartLegendFormLine;
     l.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.f];
-    l.textColor = UIColor.whiteColor;
-    l.horizontalAlignment = ChartLegendHorizontalAlignmentLeft;
-    l.verticalAlignment = ChartLegendVerticalAlignmentBottom;
-    l.orientation = ChartLegendOrientationHorizontal;
-    l.drawInside = NO;
+    l.textColor = UIColor.blackColor;
+    l.horizontalAlignment = ChartLegendHorizontalAlignmentRight;
+    l.verticalAlignment = ChartLegendVerticalAlignmentTop;
+    l.orientation = ChartLegendOrientationVertical;
+    l.drawInside = YES;
     
     ChartXAxis *xAxis = _chartView.xAxis;
-    xAxis.labelFont = [UIFont systemFontOfSize:11.f];
-    xAxis.labelTextColor = UIColor.whiteColor;
+    xAxis.labelFont =[UIFont fontWithName:@"HelveticaNeue-Light" size:10.f];
+    xAxis.labelTextColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255. alpha:1.0];
     xAxis.drawGridLinesEnabled = NO;
     xAxis.drawAxisLineEnabled = NO;
+    xAxis.labelPosition = XAxisLabelPositionBottom;
     
     ChartYAxis *leftAxis = _chartView.leftAxis;
-    leftAxis.labelTextColor = [UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f];
+    leftAxis.drawAxisLineEnabled = NO;
+    leftAxis.labelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:10.f];
+    leftAxis.labelTextColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255. alpha:1.0];
     leftAxis.axisMaximum = 200.0;
     leftAxis.axisMinimum = 0.0;
     leftAxis.drawGridLinesEnabled = YES;
-    leftAxis.drawZeroLineEnabled = NO;
+    leftAxis.gridColor = [UIColor colorWithRed:228.0/255.0 green:230.0/255.0 blue:234.0/255. alpha:1.0];
+//    leftAxis.drawZeroLineEnabled = NO;
     leftAxis.granularityEnabled = YES;
     
-    ChartYAxis *rightAxis = _chartView.rightAxis;
-    rightAxis.labelTextColor = UIColor.redColor;
-    rightAxis.axisMaximum = 900.0;
-    rightAxis.axisMinimum = -200.0;
-    rightAxis.drawGridLinesEnabled = NO;
-    rightAxis.granularityEnabled = NO;
+    _chartView.rightAxis.enabled = NO;
+//    ChartYAxis *rightAxis = _chartView.rightAxis;
+//    rightAxis.labelTextColor = UIColor.redColor;
+//    rightAxis.axisMaximum = 900.0;
+//    rightAxis.axisMinimum = -200.0;
+//    rightAxis.drawGridLinesEnabled = NO;
+//    rightAxis.granularityEnabled = NO;
     
-    _sliderX.value = 20.0;
+    BalloonMarker *marker = [[BalloonMarker alloc] initWithColor:[UIColor colorWithWhite:180/255. alpha:0.8] font:[UIFont systemFontOfSize:12.0] textColor:UIColor.whiteColor insets:UIEdgeInsetsMake(5.0, 5.0, 10.0, 5.0)];
+    marker.minimumSize = CGSizeMake(80.f, 40.f);
+    self.chartView.marker = marker;
+    
+    [_chartView.viewPortHandler setMaximumScaleY: 2.f];
+    [_chartView.viewPortHandler setMaximumScaleX: 2.f];
+    
+    _sliderX.value = 14.0;
     _sliderY.value = 30.0;
     [self slidersValueChanged:nil];
     
@@ -145,27 +159,48 @@
     }
     else
     {
+        UIColor *set1Color = [UIColor colorWithRed:37 / 255.0 green:216/ 255.0 blue:229 /255.0 alpha:1.0];
+        UIColor *set2Color = [UIColor colorWithRed:161 / 255.0 green:211 / 255.0 blue:49 /255.0 alpha:1.0];
+        
         set1 = [[LineChartDataSet alloc] initWithValues:yVals1 label:@"DataSet 1"];
         set1.axisDependency = AxisDependencyLeft;
-        [set1 setColor:[UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f]];
-        [set1 setCircleColor:UIColor.whiteColor];
+        [set1 setColor:set1Color];
+        [set1 setCircleColor:set1Color];
         set1.lineWidth = 2.0;
-        set1.circleRadius = 3.0;
+        set1.circleRadius = 5.0;//
+        set1.circleHoleColor = UIColor.whiteColor;
+//        set1.drawCircleHoleEnabled = NO;
+        set1.drawCubicEnabled = YES;
+        set1.drawValuesEnabled = NO;
+        /**<  下方是否填充颜色  >**/
+        set1.drawFilledEnabled = YES;
         set1.fillAlpha = 65/255.0;
-        set1.fillColor = [UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f];
-        set1.highlightColor = [UIColor colorWithRed:244/255.f green:117/255.f blue:117/255.f alpha:1.f];
-        set1.drawCircleHoleEnabled = NO;
+        set1.fillColor = set1Color;
         
+        /**<  移动虚线属性设置  >**/
+        set1.highlightLineWidth = 1.0;
+        set1.highlightLineDashLengths = @[@15.0,@10.0];
+        set1.highlightColor = [UIColor blackColor];
+
         set2 = [[LineChartDataSet alloc] initWithValues:yVals2 label:@"DataSet 2"];
         set2.axisDependency = AxisDependencyRight;
-        [set2 setColor:UIColor.redColor];
-        [set2 setCircleColor:UIColor.whiteColor];
+        [set2 setColor:set2Color];
+        [set2 setCircleColor:set2Color];
         set2.lineWidth = 2.0;
-        set2.circleRadius = 3.0;
+        set2.circleRadius = 5.0;
+        set2.circleHoleColor = UIColor.whiteColor;
+//        set2.drawCircleHoleEnabled = YES;
+        set2.drawCubicEnabled = YES;
+        set2.drawValuesEnabled = NO;
+        /**<  下方是否填充颜色  >**/
+        set2.drawFilledEnabled = YES;
         set2.fillAlpha = 65/255.0;
-        set2.fillColor = UIColor.redColor;
-        set2.highlightColor = [UIColor colorWithRed:244/255.f green:117/255.f blue:117/255.f alpha:1.f];
-        set2.drawCircleHoleEnabled = NO;
+        set2.fillColor = set2Color;
+        
+        /**<  移动虚线  >**/
+        set2.highlightLineWidth = 1.0;
+        set2.highlightLineDashLengths = @[@15.0,@10.0];
+        set2.highlightColor = [UIColor blackColor];
         
         NSMutableArray *dataSets = [[NSMutableArray alloc] init];
         [dataSets addObject:set1];

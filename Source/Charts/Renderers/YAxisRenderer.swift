@@ -307,6 +307,8 @@ open class YAxisRenderer: AxisRendererBase
         context.saveGState()
         
         let trans = transformer.valueToPixelMatrix
+        //TODO:警戒线
+//        self.trans = trans
         
         var position = CGPoint(x: 0.0, y: 0.0)
         
@@ -330,6 +332,9 @@ open class YAxisRenderer: AxisRendererBase
             position.x = 0.0
             position.y = CGFloat(l.limit)
             position = position.applying(trans)
+            
+            //TODO: 记录转换后的坐标
+//            self.yPoint = position
             
             context.beginPath()
             context.move(to: CGPoint(x: viewPortHandler.contentLeft, y: position.y))

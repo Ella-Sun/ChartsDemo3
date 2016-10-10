@@ -213,7 +213,7 @@
         angles = angles-([pieChartView.absoluteAngles[(int)highlight.x-1] longLongValue])/2;
         angles = angles + [pieChartView.absoluteAngles[(int)highlight.x-1] longLongValue];
     }
-    NSLog(@"-----%.2f",angles);
+//    NSLog(@"-----%.2f",angles);
     
     if(270.0 <= angles && angles <= 360.0){
         

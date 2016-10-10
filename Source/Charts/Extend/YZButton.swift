@@ -11,7 +11,7 @@ import Foundation
 var  lastLabelTitle = "qq"
 public class YZButton : UIButton{
     
-    private var label = UILabel()
+    fileprivate var label = UILabel()
     
     @objc func set(image anImage: UIImage?, labelTitle: String,buttonTitle:String ,titlePosition: UIViewContentMode, additionalSpacing: CGFloat, state: UIControlState){
         self.imageView?.contentMode = .center
@@ -23,7 +23,7 @@ public class YZButton : UIButton{
         self.setTitle(buttonTitle, for: state)
     }
     
-    private func positionLabelRespectToImage(labelTitle: String,buttonTitle:String, position: UIViewContentMode, spacing: CGFloat) {
+    fileprivate func positionLabelRespectToImage(labelTitle: String,buttonTitle:String, position: UIViewContentMode, spacing: CGFloat) {
         
         let imageSize = self.imageRect(forContentRect: self.frame)
         let titleFont = self.titleLabel?.font!

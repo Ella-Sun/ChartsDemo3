@@ -15,4 +15,11 @@
 
 @interface LineChart1ViewController : DemoBaseViewController
 
+@property (nonatomic, assign) BOOL isTouchLiminLine;
+
+//记录返回的最大金额
+@property (nonatomic, assign) CGFloat maxBalance;
+//记录返回的最小金额
+@property (nonatomic, assign) CGFloat minBalance;
+
 @end

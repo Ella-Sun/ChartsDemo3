@@ -9,30 +9,43 @@
 
 import Foundation
 
+fileprivate var _centerButton = YZButton();
+
 extension PieChartRenderer
 {
+    open var centerButton: YZButton
+    {
+        get {
+            return _centerButton;
+        }
+        set
+        {
+            if _centerButton != newValue {
+                _centerButton = newValue;
+            }
+        }
+    }
+    
     open func drawPieChartMiddleButton(holeRadius: CGFloat, center:CGPoint, chart: PieChartView) {
         
-        if(centerButton == nil){
-    
-            centerButton = YZButton()
+        if(centerButton.frame.width == 0){
             
             let btnWH : CGFloat = holeRadius * 2
             
-            centerButton?.frame = CGRect(x: center.x - holeRadius, y: center.y - holeRadius, width: btnWH, height: btnWH)
-            centerButton?.backgroundColor = UIColor.clear
-            centerButton?.adjustsImageWhenHighlighted = false
-            centerButton?.layer.cornerRadius = holeRadius
-            centerButton?.clipsToBounds = true
-            centerButton?.setTitleColor(UIColor.black, for: UIControlState.normal)
-            centerButton?.titleLabel!.textAlignment = .center
-            centerButton?.titleLabel!.font = UIFont.systemFont(ofSize: 14)
+            centerButton.frame = CGRect(x: center.x - holeRadius, y: center.y - holeRadius, width: btnWH, height: btnWH)
+            centerButton.backgroundColor = UIColor.clear
+            centerButton.adjustsImageWhenHighlighted = false
+            centerButton.layer.cornerRadius = holeRadius
+            centerButton.clipsToBounds = true
+            centerButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+            centerButton.titleLabel!.textAlignment = .center
+            centerButton.titleLabel!.font = UIFont.systemFont(ofSize: 14)
             
 //            centerButton!.imageView!.backgroundColor = UIColor.redColor()
             
-            centerButton?.addTarget(self, action: #selector(PieChartRenderer.centerBtnDidClicked), for: UIControlEvents.touchUpInside)
+            centerButton.addTarget(self, action: #selector(PieChartRenderer.centerBtnDidClicked), for: UIControlEvents.touchUpInside)
             
-            chart.addSubview(centerButton!)
+            chart.addSubview(centerButton)
             
         }
     }
