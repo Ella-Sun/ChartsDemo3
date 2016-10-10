@@ -12,7 +12,7 @@ extension BarChartRenderer
 {
     func drawBrokenLine(context: CGContext, dataProvider: BarChartDataProvider,set: IBarChartDataSet, barData: BarChartData, index: Int, y1: Double, y2: Double, x: CGFloat) {
 
-        //TODO: 构建柱子中间的虚线，默认情况下显示虚线
+        //构建柱子中间的虚线，默认情况下显示虚线
         var _highlightPointBuffer = CGPoint()
         
         context.setStrokeColor(set.highlightColor.cgColor)

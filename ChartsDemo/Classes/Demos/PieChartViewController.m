@@ -61,7 +61,7 @@
     _chartView.entryLabelColor = UIColor.whiteColor;
     _chartView.entryLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.f];
     
-    _sliderX.value = 4.0;
+    _sliderX.value = 9.0;
     _sliderY.value = 100.0;
     [self slidersValueChanged:nil];
     
@@ -202,7 +202,48 @@
 
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry highlight:(ChartHighlight * __nonnull)highlight
 {
-    NSLog(@"chartValueSelected");
+//    NSLog(@"\n************\nchartView=%@\n************\nentry=%@\n************\nhighlight=%@\n************",chartView,entry,highlight);
+    
+    PieChartView *pieChartView = (PieChartView *)chartView;
+    //让饼状图旋转
+    double angles = ([pieChartView.absoluteAngles[(int)highlight.x] longLongValue])/2;
+    
+    if(highlight.x > 0)
+    {
+        angles = angles-([pieChartView.absoluteAngles[(int)highlight.x-1] longLongValue])/2;
+        angles = angles + [pieChartView.absoluteAngles[(int)highlight.x-1] longLongValue];
+    }
+    NSLog(@"-----%.2f",angles);
+    
+    if(270.0 <= angles && angles <= 360.0){
+        
+        angles = 90 + 360 - angles;
+    }else{
+        
+        angles = 90 - angles;
+    }
+    
+    if (pieChartView.rotationAngle != 0) {
+        float newAngles = angles - pieChartView.rotationAngle;
+        
+        if (newAngles >= 180){
+            [pieChartView spinWithDuration:1.0 fromAngle:pieChartView.rotationAngle toAngle:pieChartView.rotationAngle - (360 - newAngles) easingOption:ChartEasingOptionEaseInCubic];
+            
+        } else if (newAngles <= -180){
+            [pieChartView spinWithDuration:1.0 fromAngle:pieChartView.rotationAngle toAngle:pieChartView.rotationAngle + (360 + newAngles) easingOption:ChartEasingOptionEaseInCubic];
+            
+        } else if (newAngles > -180 && newAngles < 0){
+            [pieChartView spinWithDuration:1.0 fromAngle:pieChartView.rotationAngle toAngle:pieChartView.rotationAngle + newAngles easingOption:ChartEasingOptionEaseInCubic];
+            
+        } else if (newAngles < 180 && newAngles > 0){
+            [pieChartView spinWithDuration:1.0 fromAngle:pieChartView.rotationAngle toAngle:pieChartView.rotationAngle + newAngles easingOption:ChartEasingOptionEaseInCubic];
+            
+        } else {
+            [pieChartView spinWithDuration:1.0 fromAngle:pieChartView.rotationAngle toAngle:angles easingOption:ChartEasingOptionEaseInCubic];
+        }
+    }else {
+        [pieChartView spinWithDuration:1.0 fromAngle:pieChartView.rotationAngle toAngle:angles easingOption:ChartEasingOptionEaseInCubic];
+    }
 }
 
 - (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView

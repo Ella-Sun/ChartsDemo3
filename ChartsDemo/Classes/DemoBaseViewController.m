@@ -271,19 +271,19 @@
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
-    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"Charts\nby Daniel Cohen Gindi"];
+    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"当日余额\n银行汇总\n\nTop"];
     [centerText setAttributes:@{
-                                NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:13.f],
+                                NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:11.f],
                                 NSParagraphStyleAttributeName: paragraphStyle
                                 } range:NSMakeRange(0, centerText.length)];
     [centerText addAttributes:@{
-                                NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:11.f],
+                                NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:14.f],
                                 NSForegroundColorAttributeName: UIColor.grayColor
-                                } range:NSMakeRange(10, centerText.length - 10)];
+                                } range:NSMakeRange(5, 4)];
     [centerText addAttributes:@{
-                                NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:11.f],
+                                NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:14.f],
                                 NSForegroundColorAttributeName: [UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f]
-                                } range:NSMakeRange(centerText.length - 19, 19)];
+                                } range:NSMakeRange(centerText.length - 3, 3)];
     chartView.centerAttributedText = centerText;
     
     chartView.drawHoleEnabled = YES;
@@ -299,6 +299,12 @@
     l.xEntrySpace = 7.0;
     l.yEntrySpace = 0.0;
     l.yOffset = 0.0;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(centerPieBtnDidClicked) name:@"centerBtnDidClicked" object:nil];
+}
+
+- (void)centerPieBtnDidClicked {
+    NSLog(@"被点击");
 }
 
 - (void)setupRadarChartView:(RadarChartView *)chartView

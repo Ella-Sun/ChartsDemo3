@@ -15,6 +15,9 @@ import CoreGraphics
 @objc(ChartDataRendererBase)
 open class DataRenderer: Renderer
 {
+    //TODO: 新增中间按钮属性
+    public var centerButton: YZButton?
+    
     open var animator: Animator?
     
     public init(animator: Animator?, viewPortHandler: ViewPortHandler?)

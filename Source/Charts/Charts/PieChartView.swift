@@ -195,7 +195,8 @@ open class PieChartView: PieRadarChartViewBase
         
         var dataSets = data.dataSets
 
-        var cnt = 0
+        //TODO:重新计算角度
+//        var cnt = 0
 
         for i in 0 ..< data.dataSetCount
         {
@@ -208,18 +209,20 @@ open class PieChartView: PieRadarChartViewBase
                 
                 _drawAngles.append(calcAngle(value: abs(e.y), yValueSum: yValueSum))
 
-                if cnt == 0
-                {
-                    _absoluteAngles.append(_drawAngles[cnt])
-                }
-                else
-                {
-                    _absoluteAngles.append(_absoluteAngles[cnt - 1] + _drawAngles[cnt])
-                }
-
-                cnt += 1
+//                if cnt == 0
+//                {
+//                    _absoluteAngles.append(_drawAngles[cnt])
+//                }
+//                else
+//                {
+//                    _absoluteAngles.append(_absoluteAngles[cnt - 1] + _drawAngles[cnt])
+//                }
+//
+//                cnt += 1
             }
         }
+        _drawAngles = reCalcAngles(drawAngles: _drawAngles)
+        _absoluteAngles = reCalAbsoluteAngles(drawAngles: _drawAngles)
     }
     
     /// Checks if the given index is set to be highlighted.

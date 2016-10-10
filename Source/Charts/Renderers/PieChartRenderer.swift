@@ -561,6 +561,9 @@ open class PieChartRenderer: DataRenderer
                     // draw the hole-circle
                     context.setFillColor(chart.holeColor!.cgColor)
                     context.fillEllipse(in: CGRect(x: center.x - holeRadius, y: center.y - holeRadius, width: holeRadius * 2.0, height: holeRadius * 2.0))
+                    
+                    //TODO: 在所画的中间圆上覆盖一个按钮
+                    self.drawPieChartMiddleButton(holeRadius: holeRadius, center: center, chart: chart)
                 }
             }
             
