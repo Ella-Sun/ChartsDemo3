@@ -65,10 +65,6 @@ open class ChartColorTemplates: NSObject
     
     open class func vordiplom () -> [NSUIColor]
     {
-        //TODO:改变饼状图的默认可选颜色
-        let pieColors: [NSUIColor] = self.pieColorMarket()
-        return pieColors
-/*
         return [
             NSUIColor(red: 192/255.0, green: 255/255.0, blue: 140/255.0, alpha: 1.0),
             NSUIColor(red: 255/255.0, green: 247/255.0, blue: 140/255.0, alpha: 1.0),
@@ -76,7 +72,6 @@ open class ChartColorTemplates: NSObject
             NSUIColor(red: 140/255.0, green: 234/255.0, blue: 255/255.0, alpha: 1.0),
             NSUIColor(red: 255/255.0, green: 140/255.0, blue: 157/255.0, alpha: 1.0)
         ]
- */
     }
     
     open class func material () -> [NSUIColor]

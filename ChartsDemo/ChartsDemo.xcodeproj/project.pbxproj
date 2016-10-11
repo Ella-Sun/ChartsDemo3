@@ -15,6 +15,8 @@
 		0630AE521D81271B008859B0 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0630AE411D8126C0008859B0 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0630AE551D81271B008859B0 /* ChartsRealm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630AE451D8126C0008859B0 /* ChartsRealm.framework */; };
 		0630AE561D81271B008859B0 /* ChartsRealm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0630AE451D8126C0008859B0 /* ChartsRealm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		445E16E91DAC83D00093162A /* PieChartRotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445E16E81DAC83D00093162A /* PieChartRotate.swift */; };
+		445E16EC1DAC91FB0093162A /* PieCustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445E16EB1DAC91FB0093162A /* PieCustomColor.swift */; };
 		55E356501ADC638F00A57971 /* BubbleChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E3564D1ADC638F00A57971 /* BubbleChartViewController.xib */; };
 		55E356511ADC638F00A57971 /* BubbleChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E3564F1ADC638F00A57971 /* BubbleChartViewController.m */; };
 		5B0CC7851ABB875400665592 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CC7831ABB875400665592 /* PieChartViewController.m */; };
@@ -172,6 +174,8 @@
 		0471CBFB1CA1090A00E52DBC /* PiePolylineChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PiePolylineChartViewController.xib; sourceTree = "<group>"; };
 		0630AE361D8126B1008859B0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		0630AE391D8126C0008859B0 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../Charts.xcodeproj; sourceTree = "<group>"; };
+		445E16E81DAC83D00093162A /* PieChartRotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartRotate.swift; sourceTree = "<group>"; };
+		445E16EB1DAC91FB0093162A /* PieCustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieCustomColor.swift; sourceTree = "<group>"; };
 		55E3564D1ADC638F00A57971 /* BubbleChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BubbleChartViewController.xib; sourceTree = "<group>"; };
 		55E3564E1ADC638F00A57971 /* BubbleChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleChartViewController.h; sourceTree = "<group>"; };
 		55E3564F1ADC638F00A57971 /* BubbleChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleChartViewController.m; sourceTree = "<group>"; };
@@ -450,6 +454,8 @@
 				5B613DB21D526DED000F1E98 /* RadarMarkerView.swift */,
 				5B613DB41D526EA8000F1E98 /* RadarMarkerView.xib */,
 				5B613DEF1D5A50B6000F1E98 /* XYMarkerView.swift */,
+				445E16E81DAC83D00093162A /* PieChartRotate.swift */,
+				445E16EB1DAC91FB0093162A /* PieCustomColor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -756,6 +762,7 @@
 				5B613DF21D5A60DF000F1E98 /* LargeValueFormatter.swift in Sources */,
 				5BEAED1B1ABBFB340013F194 /* ScatterChartViewController.m in Sources */,
 				5B4AC19E1C4C19340028D1A6 /* RealmWikiExampleChartViewController.m in Sources */,
+				445E16EC1DAC91FB0093162A /* PieCustomColor.swift in Sources */,
 				5B4AC1561C47EDC50028D1A6 /* RealmRadarChartViewController.m in Sources */,
 				5B0CC7851ABB875400665592 /* PieChartViewController.m in Sources */,
 				0439A3541C9FF95F00496F83 /* PiePolylineChartViewController.m in Sources */,
@@ -800,6 +807,7 @@
 				65BF12B01BFC9B00005C28D9 /* RealmLineChartViewController.m in Sources */,
 				5B57BBB51A9B26AA0036A6CC /* main.m in Sources */,
 				5BEAED361ABC192F0013F194 /* RadarChartViewController.m in Sources */,
+				445E16E91DAC83D00093162A /* PieChartRotate.swift in Sources */,
 				5B9624411B38608C007763E2 /* NegativeStackedBarChartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

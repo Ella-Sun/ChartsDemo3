@@ -48,14 +48,14 @@
     
     _chartView.delegate = self;
     
-    ChartLegend *l = _chartView.legend;
-    l.horizontalAlignment = ChartLegendHorizontalAlignmentRight;
-    l.verticalAlignment = ChartLegendVerticalAlignmentTop;
-    l.orientation = ChartLegendOrientationVertical;
-    l.drawInside = NO;
-    l.xEntrySpace = 7.0;
-    l.yEntrySpace = 0.0;
-    l.yOffset = 0.0;
+//    ChartLegend *l = _chartView.legend;
+//    l.horizontalAlignment = ChartLegendHorizontalAlignmentRight;
+//    l.verticalAlignment = ChartLegendVerticalAlignmentTop;
+//    l.orientation = ChartLegendOrientationVertical;
+//    l.drawInside = NO;
+//    l.xEntrySpace = 7.0;
+//    l.yEntrySpace = 0.0;
+//    l.yOffset = 0.0;
     
     // entry label styling
     _chartView.entryLabelColor = UIColor.whiteColor;
@@ -103,6 +103,7 @@
     // add a lot of colors
     
     NSMutableArray *colors = [[NSMutableArray alloc] init];
+    [colors addObjectsFromArray:PieCustomColor.pieColorMarket];
     [colors addObjectsFromArray:ChartColorTemplates.vordiplom];
     [colors addObjectsFromArray:ChartColorTemplates.joyful];
     [colors addObjectsFromArray:ChartColorTemplates.colorful];
