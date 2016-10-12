@@ -11,6 +11,7 @@
 
 #import "LineChart2ViewController.h"
 #import "ChartsDemo-Swift.h"
+#import "DayAxisValueFormatter.h"
 
 @interface LineChart2ViewController () <ChartViewDelegate>
 
@@ -95,9 +96,15 @@
 //    rightAxis.drawGridLinesEnabled = NO;
 //    rightAxis.granularityEnabled = NO;
     
-    BalloonMarker *marker = [[BalloonMarker alloc] initWithColor:[UIColor colorWithWhite:180/255. alpha:0.8] font:[UIFont systemFontOfSize:12.0] textColor:UIColor.whiteColor insets:UIEdgeInsetsMake(5.0, 5.0, 10.0, 5.0)];
+    XYMMarkerView *marker = [[XYMMarkerView alloc]
+                             initWithColor: [UIColor colorWithWhite:180/255. alpha:1.0]
+                             font: [UIFont systemFontOfSize:12.0]
+                             textColor: UIColor.whiteColor
+                             insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)
+                             xAxisValueFormatter: [[DayAxisValueFormatter alloc] initForChart:_chartView]];//前缀、后缀
+    marker.chartView = _chartView;
     marker.minimumSize = CGSizeMake(80.f, 40.f);
-    self.chartView.marker = marker;
+    _chartView.marker = marker;
     
     [_chartView.viewPortHandler setMaximumScaleY: 2.f];
     [_chartView.viewPortHandler setMaximumScaleX: 2.f];
@@ -167,7 +174,7 @@
         [set1 setColor:set1Color];
         [set1 setCircleColor:set1Color];
         set1.lineWidth = 2.0;
-        set1.circleRadius = 5.0;//
+        set1.circleRadius = 3.0;//
         set1.circleHoleColor = UIColor.whiteColor;
 //        set1.drawCircleHoleEnabled = NO;
         set1.drawCubicEnabled = YES;
@@ -187,7 +194,7 @@
         [set2 setColor:set2Color];
         [set2 setCircleColor:set2Color];
         set2.lineWidth = 2.0;
-        set2.circleRadius = 5.0;
+        set2.circleRadius = 3.0;
         set2.circleHoleColor = UIColor.whiteColor;
 //        set2.drawCircleHoleEnabled = YES;
         set2.drawCubicEnabled = YES;

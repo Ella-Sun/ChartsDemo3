@@ -22,10 +22,6 @@ open class BalloonMarker: MarkerImage
     open var insets = UIEdgeInsets()
     open var minimumSize = CGSize()
     
-    //TODO:添加
-    public var barDescription = NSMutableArray()
-    public var lineDateDescription = NSMutableArray()
-    
     fileprivate var labelns: NSString?
     fileprivate var _labelSize: CGSize = CGSize()
     fileprivate var _paragraphStyle: NSMutableParagraphStyle?
@@ -140,33 +136,12 @@ open class BalloonMarker: MarkerImage
     
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {
-        //TODO:
+        //TODO:最基础的千分位
         let yFormatter: NumberFormatter = generateDefaultValueFormatter()
         let newText = yFormatter.number(from: String(entry.y))//——>number
         let numLabel = yFormatter.string(from: newText!)!//——>String
         
-        let isGroup = highlight.dataSetIndex
-        let xIndex = highlight.axis.rawValue
-        let detailDes: [NSString]
-        var text: NSString = ""
-        var childAry: [NSString]
-        
-        if self.barDescription.count > 0 {
-        
-            childAry = self.barDescription[0] as! [NSString]
-            
-            if childAry.count > xIndex {
-                detailDes = self.barDescription[isGroup] as! [NSString]
-                text = detailDes[xIndex]
-            }
-        }
-        
-        if(self.lineDateDescription.count > 0){
-            text = lineDateDescription[xIndex] as! NSString
-            text =  (text as String).appending("\n") as NSString
-        }
-        
-        let label = (text as String) + numLabel
+        let label = numLabel
         
         setLabel(String(label))
     }
@@ -185,10 +160,6 @@ open class BalloonMarker: MarkerImage
         var size = CGSize()
         size.width = _labelSize.width + self.insets.left + self.insets.right
         size.height = _labelSize.height + self.insets.top + self.insets.bottom
-        //TODO:
-        if(self.lineDateDescription.count > 0){
-            size.height += 6
-        }
         size.width = max(minimumSize.width, size.width)
         size.height = max(minimumSize.height, size.height)
         self.size = size

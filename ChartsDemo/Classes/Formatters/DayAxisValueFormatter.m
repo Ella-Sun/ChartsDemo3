@@ -8,7 +8,7 @@
 
 @implementation DayAxisValueFormatter
 {
-    NSArray *singleBars;
+    NSArray *mulBars, *singleBars;
     __weak BarLineChartViewBase *_chart;
 }
 
@@ -18,7 +18,7 @@
     if (self)
     {
         self->_chart = chart;
-        
+        mulBars = @[@"净:",@"收:",@"支:"];
         singleBars = @[@"收:",@"支:"];
     }
     return self;
@@ -29,8 +29,14 @@
 {
     NSInteger setCount = _chart.data.dataSetCount;
     
-    if (setCount > 1) {
-        return @"";
+    if (setCount == 2) {
+        int index = value;
+        return singleBars[index];
+    }
+    
+    if (setCount == 3) {
+        int index = value;
+        return mulBars[index];
     }
     //只能用于一个1组的
     int days = (int)value - 1;

@@ -136,7 +136,7 @@
     l.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.f];
     l.xEntrySpace = 4.0;
     
-    XYMarkerView *marker = [[XYMarkerView alloc]
+    XYSMarkerView *marker = [[XYSMarkerView alloc]
                             initWithColor: [UIColor colorWithWhite:180/255. alpha:1.0]
                                      font: [UIFont systemFontOfSize:12.0]
                                 textColor: UIColor.whiteColor

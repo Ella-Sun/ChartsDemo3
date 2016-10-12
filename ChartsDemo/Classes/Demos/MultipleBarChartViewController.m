@@ -12,6 +12,7 @@
 #import "MultipleBarChartViewController.h"
 #import "ChartsDemo-Swift.h"
 #import "IntAxisValueFormatter.h"
+#import "DayAxisValueFormatter.h"
 
 @interface MultipleBarChartViewController () <ChartViewDelegate>
 
@@ -52,11 +53,12 @@
     _chartView.drawBarShadowEnabled = NO;
     _chartView.drawGridBackgroundEnabled = NO;
     
-    BalloonMarker *marker = [[BalloonMarker alloc]
-                             initWithColor: [UIColor colorWithWhite:180/255. alpha:1.0]
-                             font: [UIFont systemFontOfSize:12.0]
-                             textColor: UIColor.whiteColor
-                             insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)];
+    XYMMarkerView *marker = [[XYMMarkerView alloc]
+                            initWithColor: [UIColor colorWithWhite:180/255. alpha:1.0]
+                            font: [UIFont systemFontOfSize:12.0]
+                            textColor: UIColor.whiteColor
+                            insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)
+                            xAxisValueFormatter: [[DayAxisValueFormatter alloc] initForChart:_chartView]];//前缀、后缀
     marker.chartView = _chartView;
     marker.minimumSize = CGSizeMake(80.f, 40.f);
     _chartView.marker = marker;

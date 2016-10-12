@@ -17,6 +17,8 @@
 		0630AE561D81271B008859B0 /* ChartsRealm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0630AE451D8126C0008859B0 /* ChartsRealm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		445E16E91DAC83D00093162A /* PieChartRotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445E16E81DAC83D00093162A /* PieChartRotate.swift */; };
 		445E16EC1DAC91FB0093162A /* PieCustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445E16EB1DAC91FB0093162A /* PieCustomColor.swift */; };
+		44B1F6951DAE084F008370E5 /* XYMMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B1F6941DAE084F008370E5 /* XYMMarkerView.swift */; };
+		44B1F69A1DAE0C6F008370E5 /* XYSMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B1F6991DAE0C6F008370E5 /* XYSMarkerView.swift */; };
 		55E356501ADC638F00A57971 /* BubbleChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E3564D1ADC638F00A57971 /* BubbleChartViewController.xib */; };
 		55E356511ADC638F00A57971 /* BubbleChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E3564F1ADC638F00A57971 /* BubbleChartViewController.m */; };
 		5B0CC7851ABB875400665592 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CC7831ABB875400665592 /* PieChartViewController.m */; };
@@ -176,6 +178,8 @@
 		0630AE391D8126C0008859B0 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../Charts.xcodeproj; sourceTree = "<group>"; };
 		445E16E81DAC83D00093162A /* PieChartRotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartRotate.swift; sourceTree = "<group>"; };
 		445E16EB1DAC91FB0093162A /* PieCustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieCustomColor.swift; sourceTree = "<group>"; };
+		44B1F6941DAE084F008370E5 /* XYMMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYMMarkerView.swift; sourceTree = "<group>"; };
+		44B1F6991DAE0C6F008370E5 /* XYSMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYSMarkerView.swift; sourceTree = "<group>"; };
 		55E3564D1ADC638F00A57971 /* BubbleChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BubbleChartViewController.xib; sourceTree = "<group>"; };
 		55E3564E1ADC638F00A57971 /* BubbleChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleChartViewController.h; sourceTree = "<group>"; };
 		55E3564F1ADC638F00A57971 /* BubbleChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleChartViewController.m; sourceTree = "<group>"; };
@@ -454,6 +458,8 @@
 				5B613DB21D526DED000F1E98 /* RadarMarkerView.swift */,
 				5B613DB41D526EA8000F1E98 /* RadarMarkerView.xib */,
 				5B613DEF1D5A50B6000F1E98 /* XYMarkerView.swift */,
+				44B1F6941DAE084F008370E5 /* XYMMarkerView.swift */,
+				44B1F6991DAE0C6F008370E5 /* XYSMarkerView.swift */,
 				445E16E81DAC83D00093162A /* PieChartRotate.swift */,
 				445E16EB1DAC91FB0093162A /* PieCustomColor.swift */,
 			);
@@ -795,9 +801,11 @@
 				5B8EAF281AB32CF5009697AA /* DemoBaseViewController.m in Sources */,
 				65BF12601BFBC710005C28D9 /* RealmDemoData.m in Sources */,
 				5BE673941D5B4E0900A87BA2 /* LineChartTimeViewController.m in Sources */,
+				44B1F6951DAE084F008370E5 /* XYMMarkerView.swift in Sources */,
 				5B4AC1511C47E8720028D1A6 /* RealmHorizontalBarChartViewController.m in Sources */,
 				5B613DF01D5A50B6000F1E98 /* XYMarkerView.swift in Sources */,
 				5BEAED3B1ABC199F0013F194 /* ColoredLineChartViewController.m in Sources */,
+				44B1F69A1DAE0C6F008370E5 /* XYSMarkerView.swift in Sources */,
 				5BDEDC411ABB7F73007D3A60 /* HorizontalBarChartViewController.m in Sources */,
 				5BEAED121ABBFB2B0013F194 /* AnotherBarChartViewController.m in Sources */,
 				5BEAED311ABC18F00013F194 /* CubicLineChartViewController.m in Sources */,
