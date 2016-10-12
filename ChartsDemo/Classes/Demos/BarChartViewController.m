@@ -25,6 +25,50 @@
 
 @implementation BarChartViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // 柱状图 缩放手势
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autoScaleMinMaxEnabled:) name:@"autoScaleMinMaxEnabled" object:nil];
+    
+    // 双击手势 放大柱状图
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doubleTypeAutoScaleEnabled) name:@"doubleTypeAutoScaleEnabled" object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+/**
+ * 柱状图缩放
+ */
+- (void)autoScaleMinMaxEnabled:(NSNotification *)noti{
+    
+    NSDictionary *dict = noti.object;
+    for (id<IChartDataSet> set in self.chartView.data.dataSets)
+    {
+        BOOL isScaling = [dict[@"isScaleX"] intValue] || [dict[@"isScaleY"] intValue];
+        if(isScaling){
+            set.drawValuesEnabled = YES;
+        } else {
+            set.drawValuesEnabled = NO;
+        }
+    }
+}
+
+/**
+ * 双击放大柱状图
+ */
+- (void)doubleTypeAutoScaleEnabled{
+    
+    for (id<IChartDataSet> set in self.chartView.data.dataSets)
+    {
+        set.drawValuesEnabled = YES;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -156,6 +200,7 @@
         set1 = [[BarChartDataSet alloc] initWithValues:yVals label:@"The year 2017"];
         [set1 setColors:ChartColorTemplates.material];
 //        [set1 setColor:[UIColor greenColor]];
+        set1.drawValuesEnabled = NO;
         
         NSMutableArray *dataSets = [[NSMutableArray alloc] init];
         [dataSets addObject:set1];
@@ -191,6 +236,7 @@
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry highlight:(ChartHighlight * __nonnull)highlight
 {
     NSLog(@"chartValueSelected");
+    
 }
 
 - (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView

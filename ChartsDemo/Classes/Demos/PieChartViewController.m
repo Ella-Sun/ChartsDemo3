@@ -48,15 +48,6 @@
     
     _chartView.delegate = self;
     
-//    ChartLegend *l = _chartView.legend;
-//    l.horizontalAlignment = ChartLegendHorizontalAlignmentRight;
-//    l.verticalAlignment = ChartLegendVerticalAlignmentTop;
-//    l.orientation = ChartLegendOrientationVertical;
-//    l.drawInside = NO;
-//    l.xEntrySpace = 7.0;
-//    l.yEntrySpace = 0.0;
-//    l.yOffset = 0.0;
-    
     // entry label styling
     _chartView.entryLabelColor = UIColor.whiteColor;
     _chartView.entryLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.f];
@@ -104,11 +95,11 @@
     
     NSMutableArray *colors = [[NSMutableArray alloc] init];
     [colors addObjectsFromArray:PieCustomColor.pieColorMarket];
-    [colors addObjectsFromArray:ChartColorTemplates.vordiplom];
-    [colors addObjectsFromArray:ChartColorTemplates.joyful];
-    [colors addObjectsFromArray:ChartColorTemplates.colorful];
-    [colors addObjectsFromArray:ChartColorTemplates.liberty];
-    [colors addObjectsFromArray:ChartColorTemplates.pastel];
+    [colors addObjectsFromArray:PieCustomColor.vordiplom];
+    [colors addObjectsFromArray:PieCustomColor.joyful];
+    [colors addObjectsFromArray:PieCustomColor.colorful];
+    [colors addObjectsFromArray:PieCustomColor.liberty];
+    [colors addObjectsFromArray:PieCustomColor.pastel];
     [colors addObject:[UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f]];
     
     dataSet.colors = colors;

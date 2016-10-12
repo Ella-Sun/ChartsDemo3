@@ -76,6 +76,10 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
     /// flag that indicates if a custom viewport offset has been set
     fileprivate var _customViewPortEnabled = false
     
+    //TODO:判断柱状图捏合手势（默认XY轴都不缩放）
+    fileprivate var _isScaleX = false
+    fileprivate var _isScaleY = false
+    
     public override init(frame: CGRect)
     {
         super.init(frame: frame)
@@ -546,6 +550,8 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
                 }
                 
                 self.zoom(scaleX: isScaleXEnabled ? 1.4 : 1.0, scaleY: isScaleYEnabled ? 1.4 : 1.0, x: location.x, y: location.y)
+                // TODO:双击发通知告诉外面柱状图放大比例
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "doubleTypeAutoScaleEnabled"), object: nil)
             }
         }
     }
@@ -591,6 +597,12 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
                 
                 // Range might have changed, which means that Y-axis labels could have changed in size, affecting Y-axis size. So we need to recalculate offsets.
                 calculateOffsets()
+                
+                //TODO: 此处增加通知将缩放比例传到controller监听柱状图的缩放
+                let dict = ["isScaleX":_isScaleX , "isScaleY":_isScaleY]
+                // 发通知告诉外面柱状图比例有变化
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "autoScaleMinMaxEnabled"), object: dict)
+                
                 setNeedsDisplay()
             }
         }
@@ -599,6 +611,9 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
             let isZoomingOut = (recognizer.nsuiScale < 1)
             var canZoomMoreX = isZoomingOut ? _viewPortHandler.canZoomOutMoreX : _viewPortHandler.canZoomInMoreX
             var canZoomMoreY = isZoomingOut ? _viewPortHandler.canZoomOutMoreY : _viewPortHandler.canZoomInMoreY
+            
+            _isScaleX = _viewPortHandler.canZoomOutMoreX
+            _isScaleY = _viewPortHandler.canZoomOutMoreY
             
             if _isScaling
             {
