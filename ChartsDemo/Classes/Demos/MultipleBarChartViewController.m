@@ -88,7 +88,7 @@
     leftAxis.valueFormatter = [[LargeValueFormatter alloc] init];
     leftAxis.drawGridLinesEnabled = NO;
     leftAxis.spaceTop = 0.25;
-    leftAxis.axisMinimum = 0;
+//    leftAxis.axisMinimum = 0;
     
     _chartView.rightAxis.enabled = NO;
     
@@ -125,22 +125,34 @@
     NSMutableArray *yVals2 = [[NSMutableArray alloc] init];
     NSMutableArray *yVals3 = [[NSMutableArray alloc] init];
     
-    double mult = range * 10000.f;
+//    double mult = range * 10000.f;
     
-    int startYear = 1;
-    int endYear = startYear + _sliderX.value;
+    int startYear = 0;
+    int endYear = 2;//startYear + _sliderX.value;
+    
+    NSArray *values1 = @[@"-129167.25",@"14420000"];
+    NSArray *values2 = @[@"0.00",@"16300000"];
+    NSArray *values3 = @[@"-129167.25",@"-1880000"];
 
     for (int i = startYear; i < endYear; i++)
     {
-        double val = (double) (arc4random_uniform(mult) + 3.0);
-        [yVals1 addObject:[[BarChartDataEntry alloc] initWithX:i y:val]];
+        double val1 = [values1[i] doubleValue];
+        //(double) (arc4random_uniform(mult) + 3.0);
+        [yVals1 addObject:[[BarChartDataEntry alloc] initWithX:i y:val1]];
         
-        val = (double) (arc4random_uniform(mult) + 3.0);
-        [yVals2 addObject:[[BarChartDataEntry alloc] initWithX:i y:val]];
+         double val2 = [values2[i] doubleValue];
+        //(double) (arc4random_uniform(mult) + 3.0);
+        [yVals2 addObject:[[BarChartDataEntry alloc] initWithX:i y:val2]];
         
-        val = (double) (arc4random_uniform(mult) + 3.0);
-        [yVals3 addObject:[[BarChartDataEntry alloc] initWithX:i y:val]];
+        double val3 = [values3[i] doubleValue];
+        //(double) (arc4random_uniform(mult) + 3.0);
+        [yVals3 addObject:[[BarChartDataEntry alloc] initWithX:i y:val3]];
     }
+    
+    BarChartData *data = _chartView.barData;
+    
+    _chartView.xAxis.axisMinimum = startYear;
+    _chartView.xAxis.axisMaximum = [data groupWidthWithGroupSpace:groupSpace barSpace: barSpace] * yVals1.count + startYear;
     
     BarChartDataSet *set1 = nil, *set2 = nil, *set3 = nil;
     if (_chartView.data.dataSetCount > 0)
@@ -151,12 +163,6 @@
         set1.values = yVals1;
         set2.values = yVals2;
         set3.values = yVals3;
-        
-        BarChartData *data = _chartView.barData;
-        
-        _chartView.xAxis.axisMinimum = startYear;
-        _chartView.xAxis.axisMaximum = [data groupWidthWithGroupSpace:groupSpace barSpace: barSpace] * _sliderX.value + startYear;
-        [data groupBarsFromX: startYear groupSpace: groupSpace barSpace: barSpace];
         
         [_chartView.data notifyDataChanged];
         [_chartView notifyDataSetChanged];
@@ -183,8 +189,6 @@
         
         data.barWidth = barWidth;
         
-        _chartView.xAxis.axisMinimum = startYear;
-        _chartView.xAxis.axisMaximum = [data groupWidthWithGroupSpace:groupSpace barSpace: barSpace] * _sliderX.value + startYear;
         [data groupBarsFromX: startYear groupSpace: groupSpace barSpace: barSpace];
         
         _chartView.data = data;
